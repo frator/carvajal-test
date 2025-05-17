@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  carvajal:
+    container_name: "carvajal-test"
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "80:80"
+    env_file:
+      - ./app/.env
+    volumes:
+      - ./app:/app
+    restart: unless-stopped

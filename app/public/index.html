@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Consulta de Acciones</title>
+</head>
+<body>
+  <h1>Consulta el valor de acciones</h1>
+  <h2>Nodo: {{hostname}}</h2>
+  <select id="stockSelect">
+    <option value="AAPL">Apple</option>
+    <option value="MSFT">Microsoft</option>
+    <option value="GOOGL">Google</option>
+  </select>
+  <button onclick="consultar()">Consultar</button>
+  <pre id="resultado"></pre>
+  <script>
+    async function consultar() {
+      const symbol = document.getElementById('stockSelect').value;
+      const res = await fetch(`/api/stock/${symbol}`);
+      const data = await res.json();
+      document.getElementById('resultado').textContent = JSON.stringify(data, null, 2);
+    }
+  </script>
+</body>
+</html>
